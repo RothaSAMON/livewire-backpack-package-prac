@@ -37,7 +37,10 @@
                         @endif --}}
                     </div>
                     <div class="card-footer">
-                        <a href="{{ route('phones.show', $phone->id) }}" class="btn btn-primary">View Details</a>
+                        <a href="{{ backpack_url('phones/' . $phone->id) }}" 
+                          class="btn btn-primary">
+                          View Details
+                        </a>
                     </div>
                 </div>
             </div>
