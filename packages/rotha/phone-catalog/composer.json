@@ -2,7 +2,7 @@
     "name": "rotha/phone-catalog",
     "description": "A Laravel package for phone catalog with Backpack admin and Livewire components",
     "type": "library",
-    "license": "ROTHA",
+    "license": "MIT",
     "authors": [
         {
             "name": "Rotha SAMON",
