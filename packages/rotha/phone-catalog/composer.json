@@ -1,0 +1,34 @@
+{
+    "name": "rotha/phone-catalog",
+    "description": "A Laravel package for phone catalog with Backpack admin and Livewire components",
+    "type": "library",
+    "license": "ROTHA",
+    "authors": [
+        {
+            "name": "Rotha SAMON",
+            "email": "samonrotha@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {
+        "php": "^8.0",
+        "illuminate/support": "^9.0|^10.0|^11.0|^12.0"
+    },
+    "suggest": {
+        "backpack/crud": "Required for admin panel functionality (^5.0)",
+        "livewire/livewire": "Required for frontend components (^2.0|^3.0)"
+    },
+    "autoload": {
+        "psr-4": {
+            "Rotha\\PhoneCatalog\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Rotha\\PhoneCatalog\\PhoneCatalogServiceProvider"
+            ]
+        }
+    }
+}
