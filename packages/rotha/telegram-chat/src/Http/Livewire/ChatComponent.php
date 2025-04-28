@@ -5,7 +5,7 @@ namespace Rotha\TelegramChat\Http\Livewire;
 use Livewire\Component;
 use Rotha\TelegramChat\Models\TelegramUser;
 use Rotha\TelegramChat\Models\TelegramMessage;
-use Telegram\Bot\Laravel\Facades\Telegram;
+use Rotha\TelegramChat\Services\TelegramService;
 
 class ChatComponent extends Component
 {
@@ -37,6 +37,13 @@ class ChatComponent extends Component
         }
     }
 
+    protected $telegramService;
+
+    public function boot()
+    {
+        $this->telegramService = new TelegramService();
+    }
+
     public function sendMessage()
     {
         if (!$this->selectedUser || empty($this->message)) {
@@ -44,13 +51,11 @@ class ChatComponent extends Component
         }
 
         try {
-            // Send message via Telegram Bot API
-            $response = Telegram::sendMessage([
-                'chat_id' => $this->selectedUser->telegram_id,
-                'text' => $this->message,
-            ]);
+            $response = $this->telegramService->sendMessage(
+                $this->selectedUser->telegram_id,
+                $this->message
+            );
 
-            // Store message in database
             TelegramMessage::create([
                 'telegram_user_id' => $this->selectedUser->id,
                 'message_id' => $response->getMessageId(),
@@ -71,13 +76,11 @@ class ChatComponent extends Component
         try {
             $message = TelegramMessage::findOrFail($messageId);
             
-            // Delete message from Telegram
-            Telegram::deleteMessage([
-                'chat_id' => $message->user->telegram_id,
-                'message_id' => $message->message_id,
-            ]);
+            $this->telegramService->deleteMessage(
+                $message->user->telegram_id,
+                $message->message_id
+            );
 
-            // Delete from database
             $message->delete();
             
             $this->loadMessages();
