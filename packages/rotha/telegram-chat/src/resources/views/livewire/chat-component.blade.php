@@ -68,6 +68,11 @@
             </div>
         @else
             <div class="card">
+                <div class="text-center mt-4">
+                    <img src="https://png.pngtree.com/png-clipart/20190120/ourmid/pngtree-cute-ghost-ghostly-cute-ghost-halloween-halloween-ghost-png-image_493761.png" 
+                        alt="Ghost"
+                        style="width: 250px;">
+                </div>
                 <div class="card-body text-center">
                     <h3>Select a user to start chatting</h3>
                 </div>
