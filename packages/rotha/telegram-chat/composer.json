@@ -1,0 +1,31 @@
+{
+    "name": "rotha/telegram-chat",
+    "description": "A Laravel package for Telegram chat bot management with Backpack admin",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Rotha SAMON",
+            "email": "samonrotha@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {
+        "php": "^8.0",
+        "illuminate/support": "^9.0|^10.0|^11.0|^12.0",
+        "irazasyed/telegram-bot-sdk": "^3.9"
+    },
+    "autoload": {
+        "psr-4": {
+            "Rotha\\TelegramChat\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Rotha\\TelegramChat\\TelegramChatServiceProvider"
+            ]
+        }
+    }
+}

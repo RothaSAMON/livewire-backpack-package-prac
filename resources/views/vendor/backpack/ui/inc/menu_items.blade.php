@@ -4,3 +4,6 @@
 {{-- Phone Management --}}
 <li class="nav-item"><a class="nav-link" href="{{ backpack_url('phone') }}"><i class="nav-icon la la-mobile"></i> Phones CRUD</a></li>
 <li class="nav-item"><a class="nav-link" href="{{ backpack_url('phones') }}"><i class="nav-icon la la-list"></i> Phone Catalog</a></li>
+
+{{-- Telegram Chat --}}
+<li class="nav-item"><a class="nav-link" href="{{ backpack_url('telegram-chat') }}"><i class="nav-icon la la-telegram"></i> Telegram Chat</a></li>

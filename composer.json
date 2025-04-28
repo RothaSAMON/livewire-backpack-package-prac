@@ -9,16 +9,22 @@
         {
             "type": "path",
             "url": "./packages/rotha/phone-catalog"
+        },
+        {
+            "type": "path",
+            "url": "packages/rotha/telegram-chat"
         }
     ],
     "require": {
         "php": "^8.2",
         "backpack/crud": "^6.8",
         "backpack/theme-tabler": "^1.2",
+        "irazasyed/telegram-bot-sdk": "^3.15",
         "laravel/framework": "^12.0",
         "laravel/tinker": "^2.10.1",
         "livewire/livewire": "^3.6",
-        "rotha/phone-catalog": "dev-main"
+        "rotha/phone-catalog": "dev-main",
+        "rotha/telegram-chat": "dev-main"
     },
     "require-dev": {
         "backpack/generators": "^4.0",
