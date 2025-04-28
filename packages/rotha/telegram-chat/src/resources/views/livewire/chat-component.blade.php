@@ -15,7 +15,7 @@
                                     <small>{{'@'.$user->username }}</small>
                                 </div>
                                 @if($user->messages->where('is_from_admin', false)->where('read', false)->count() > 0)
-                                    <span class="badge bg-primary rounded-pill">
+                                    <span class="badge bg-primary rounded-pill" wire:key="unread-{{ $user->id }}">
                                         {{ $user->messages->where('is_from_admin', false)->where('read', false)->count() }}
                                     </span>
                                 @endif

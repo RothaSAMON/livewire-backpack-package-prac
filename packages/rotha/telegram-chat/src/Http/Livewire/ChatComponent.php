@@ -25,7 +25,16 @@ class ChatComponent extends Component
     public function selectUser($userId)
     {
         $this->selectedUser = TelegramUser::find($userId);
-        $this->loadMessages();
+        
+        // Mark all unread messages from this user as read
+        if ($this->selectedUser) {
+            $this->selectedUser->messages()
+                ->where('is_from_admin', false)
+                ->where('read', false)
+                ->update(['read' => true]);
+                
+            $this->loadMessages();
+        }
     }
 
     public function loadMessages()
