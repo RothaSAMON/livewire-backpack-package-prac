@@ -35,7 +35,11 @@
                         {{ $selectedUser->first_name }} {{ $selectedUser->last_name }}    
                     </span></h3>
                 </div>
-                <div class="card-body" style="height: 400px; overflow-y: auto;">
+                <div class="card-body" 
+                    style="height: 400px; overflow-y: auto;"
+                    x-data="{}"
+                    x-init="$nextTick(() => { $el.scrollTop = $el.scrollHeight })"
+                    id="chat-container">
                     <div class="chat-messages">
                         @foreach($messages->sortBy('sent_at') as $message)
                             <div class="message mb-3 {{ $message->is_from_admin ? 'text-end' : '' }}">
@@ -59,8 +63,18 @@
                 <div class="card-footer">
                     <form wire:submit.prevent="sendMessage">
                         <div class="input-group">
-                            <input type="text" wire:model.defer="message" class="form-control" placeholder="Type your message...">
-                            <button type="submit" class="btn btn-primary">Send</button>
+                            <input type="text" 
+                                wire:model.defer="message" 
+                                class="form-control" 
+                                placeholder="Type your message..."
+                                x-data="{}"
+                                @keyup.enter="$nextTick(() => { document.getElementById('chat-container').scrollTop = document.getElementById('chat-container').scrollHeight })">
+                            <button type="submit" 
+                                    class="btn btn-primary"
+                                    x-data="{}"
+                                    @click="$nextTick(() => { document.getElementById('chat-container').scrollTop = document.getElementById('chat-container').scrollHeight })">
+                                Send
+                            </button>
                         </div>
                         @error('message') <span class="text-danger">{{ $message }}</span> @enderror
                     </form>
@@ -80,3 +94,14 @@
         @endif
     </div>
 </div>
+
+<script>
+    document.addEventListener('livewire:load', function () {
+        Livewire.on('messageReceived', () => {
+            const container = document.getElementById('chat-container');
+            if (container) {
+                container.scrollTop = container.scrollHeight;
+            }
+        });
+    });
+</script>
